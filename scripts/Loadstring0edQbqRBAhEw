@@ -1,0 +1,99 @@
+-- Farewell Infortality.
+-- Version: 2.82
+-- Instances:
+local awesome = Instance.new("ScreenGui")
+local main = Instance.new("ImageLabel")
+local top = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local cords = Instance.new("TextLabel")
+local line = Instance.new("Frame")
+local generate = Instance.new("TextButton")
+local cordsbtn = Instance.new("TextButton")
+--Properties:
+awesome.Name = "awesome"
+awesome.Parent = game.CoreGui
+
+main.Name = "main"
+main.Parent = awesome
+main.BackgroundColor3 = Color3.new(1, 1, 1)
+main.BackgroundTransparency = 1
+main.Position = UDim2.new(0.0787977427, 0, 0.36796537, 0)
+main.Size = UDim2.new(0, 217, 0, 196)
+main.Image = "rbxassetid://2851926732"
+main.ImageColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+main.ScaleType = Enum.ScaleType.Slice
+main.SliceCenter = Rect.new(12, 12, 12, 12)
+
+top.Name = "top"
+top.Parent = main
+top.BackgroundColor3 = Color3.new(0.172549, 0.172549, 0.172549)
+top.BorderSizePixel = 0
+top.Size = UDim2.new(0, 217, 0, 29)
+
+TextLabel.Parent = top
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Position = UDim2.new(0.0368663594, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 29)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Teleport script generator"
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextSize = 14
+
+cords.Name = "cords"
+cords.Parent = main
+cords.BackgroundColor3 = Color3.new(1, 1, 1)
+cords.BackgroundTransparency = 1
+cords.Position = UDim2.new(0, 0, 0.147959188, 0)
+cords.Size = UDim2.new(0, 217, 0, 29)
+cords.Font = Enum.Font.SourceSans
+cords.Text = "0,0,0"
+cords.TextColor3 = Color3.new(1, 1, 1)
+cords.TextScaled = true
+cords.TextSize = 14
+cords.TextWrapped = true
+
+line.Name = "line"
+line.Parent = main
+line.BackgroundColor3 = Color3.new(1, 1, 1)
+line.Position = UDim2.new(0.0276497696, 0, 0.331632644, 0)
+line.Size = UDim2.new(0, 202, 0, 1)
+
+generate.Name = "generate"
+generate.Parent = main
+generate.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+generate.Position = UDim2.new(0.170506909, 0, 0.5, 0)
+generate.Size = UDim2.new(0, 143, 0, 26)
+generate.Font = Enum.Font.SourceSansBold
+generate.Text = "Generate Script"
+generate.TextColor3 = Color3.new(1, 1, 1)
+generate.TextSize = 14
+
+cordsbtn.Name = "cordsbtn"
+cordsbtn.Parent = main
+cordsbtn.BackgroundColor3 = Color3.new(0.333333, 0.333333, 0.333333)
+cordsbtn.Position = UDim2.new(0.170506909, 0, 0.71938777, 0)
+cordsbtn.Size = UDim2.new(0, 143, 0, 26)
+cordsbtn.Font = Enum.Font.SourceSansBold
+cordsbtn.Text = "Copy cords"
+cordsbtn.TextColor3 = Color3.new(1, 1, 1)
+cordsbtn.TextSize = 14
+-- Scripts:
+
+main.Active = true
+main.Draggable = true
+
+
+game:GetService"RunService".RenderStepped:Connect(function()
+	cords.Text = tostring(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position)
+end)
+
+generate.MouseButton1Click:connect(function()
+	local pos = "CFrame.new(" .. tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position) .. ")"
+setclipboard("local oh1 = " .. pos .. "\nlocal oh2 = game:GetService(\"Players\")\nlocal oh3 = oh2.LocalPlayer.Character.HumanoidRootPart\n\n\noh3.CFrame = oh1\n\n-- end of script")
+end)
+
+cordsbtn.MouseButton1Click:connect(function()
+	local pos = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+	setclipboard(pos)
+end)
