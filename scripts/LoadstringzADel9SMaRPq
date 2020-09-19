@@ -1,0 +1,13 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))() 
+
+	local window = library:CreateWindow("Autofarm")
+
+	local features = window:CreateFolder("Autofarm")
+
+	features:Label("press the sexy button if you want autofarm")
+
+	features:Button("autofarm",function()
+		print("Jailbreak autofarm made by we all know who")
+		loadstring(game:GetObjects("rbxassetid://1461971147")[1].Source)()
+		print("made by ceral killer or sometbody i frogot")
+	end)
