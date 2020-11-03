@@ -1,0 +1,65 @@
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))() 
+
+
+name = game.Players.LocalPlayer.Name 
+me = game.Players.LocalPlayer.Character
+local main = library:CreateWindow("SILLY SIMULATOR")
+
+
+local features = main:CreateFolder("Features")
+features:Label("you are SILLY for using this",Color3.fromRGB(38,38,38),Color3.fromRGB(0,216,111))
+
+features:Toggle("autopunch",function(bool)
+	punching = bool 
+end)
+
+features:Toggle("auto uppercut",function(dool)
+	cut = dool
+end)
+
+features:Toggle("no slow",function(tool)
+	noslow = tool
+end)
+
+local killer = main:CreateFolder("Kill stuff")
+
+killer:Box("username","string",function(username)
+	mantomurder = username
+	print(mantomurder)
+end)
+
+killer:Toggle("loopgoto",function(herewego)
+	killing = herewego
+end)
+
+
+local debug = main:CreateFolder("debug")
+
+debug:Button("restart",function()
+	
+end)
+while wait() do
+	if punching == true then
+		game.Workspace[name].OYS.ButtonPressed:FireServer("F")
+		wait()
+	end
+	
+	if cut == true then
+		game.Workspace[name].OYS.ButtonPressed:FireServer("R")
+		wait()
+	end
+	
+	if noslow == true then
+		wait()
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
+	end
+	
+	if killing == true then
+		wait()
+
+
+		local targetplayer = game.Workspace[mantomurder].HumanoidRootPart
+
+		me.HumanoidRootPart.CFrame = CFrame.new(targetplayer.Position.X, targetplayer.Position.Y, targetplayer.Position.Z)
+	end
+end
