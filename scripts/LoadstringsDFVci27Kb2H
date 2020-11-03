@@ -36,7 +36,7 @@ end)
 local debug = main:CreateFolder("debug")
 
 debug:Button("restart",function()
-	
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringsDFVci27Kb2H", true))()
 end)
 while wait() do
 	if punching == true then
