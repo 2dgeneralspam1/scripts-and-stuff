@@ -1,0 +1,30 @@
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+			game:GetService("Workspace").Model["Meshes/treetest6"].CFrame
+
+		thing = 1
+		wait(1)
+		while wait() do
+			game:GetService("Workspace").Stages[thing].CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			thing = thing + 1
+			if thing == 23 then
+				thang = 1
+				_G.toggled = true
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+					game:GetService("Workspace").Model["Meshes/treetest6"].CFrame
+				while _G.toggled == true do
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+						game:GetService("Workspace").Model["Meshes/treetest6"].CFrame
+					wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Stages[1].CFrame
+					thang = thang + 1
+					if thang == 180 then
+						_G.toggled = false
+						local oh1 = CFrame.new(486.448669, 1.9980315, 211.576782)
+						local oh2 = game:GetService("Players")
+						local oh3 = oh2.LocalPlayer.Character.HumanoidRootPart
+
+						oh3.CFrame = oh1
+					end
+				end
+			end
+		end
