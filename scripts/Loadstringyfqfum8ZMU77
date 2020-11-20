@@ -1,0 +1,51 @@
+hitboxSize = 13 -- Change hitbox size here
+	visiblity = 10 -- 10 for invisible, 0 for visible 
+
+	local function expandHitbox(target) -- expand hitbox function (basic)  
+		-- Prevent errors by waiting until everything loads in for the target
+		repeat wait() until target.Character 
+		repeat wait() until target.Character:FindFirstChild("HeadHB")
+		repeat wait() until target.Character:FindFirstChild("HumanoidRootPart")
+
+		-- expand hitbox 
+		target.Character.HeadHB.Size = Vector3.new(hitboxSize,hitboxSize,hitboxSize)
+		target.Character.HeadHB.CanCollide = false
+		target.Character.HeadHB.Transparency = visiblity
+		target.Character.HumanoidRootPart.Size = Vector3.new(hitboxSize,hitboxSize,hitboxSize)
+		target.Character.HumanoidRootPart.CanCollide = false
+		target.Character.HumanoidRootPart.Transparency = visiblity
+		target.Character.RightUpperLeg.Size = Vector3.new(hitboxSize,hitboxSize,hitboxSize)
+		target.Character.RightUpperLeg.CanCollide = false 
+		target.Character.RightUpperLeg.Transparency = 10
+		target.Character.LeftUpperLeg.CanCollide = false
+		target.Character.LeftUpperLeg.Size = Vector3.new(hitboxSize,hitboxSize,hitboxSize)
+		target.Character.LeftUpperLeg.Transparency = 10
+	end
+
+	-- What players do we do this to? 
+
+	for i,v in pairs(game.Players:GetPlayers()) do --exisiting players 
+		if v ~= game:GetService("Players").LocalPlayer and v.Character then 
+			expandHitbox(v)
+			v.CharacterAdded:Connect(function(character)
+				expandHitbox(character)
+			end)
+		end 
+	end 
+
+	game.Players.PlayerAdded:Connect(function(player) -- new member joins
+		if player.character then -- if its a character 
+			expandHitbox(player)
+		end 
+		player.CharacterAdded:Connect(function(joinedcharacter) -- if their character changes
+			expandHitbox(joinedcharacter)
+		end)
+	end) 
+
+	while wait(1) do -- get rid of the FUCKING THIGHS i dont care i dont care its ugly it does its job
+		for i,v in pairs(game.Players:GetPlayers()) do --exisiting players 
+			if v ~= game:GetService("Players").LocalPlayer and v.Character then 
+				expandHitbox(v)
+			end 
+		end 
+	end 
