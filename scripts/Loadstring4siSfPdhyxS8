@@ -1,0 +1,15 @@
+function closest() [nonamecall]
+	local md = math.huge
+	local closestplayer
+	for i,v in next, game.Players:GetPlayers() do
+		if v.Team ~= me.Team and v.Character:FindFirstChild("HumanoidRootPart")  then
+			mag = (me.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
+			if mag < md then
+				md = mag
+				closestplayer = v
+			end
+		end
+	end
+	return closestplayer
+end
+print(closest())
