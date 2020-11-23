@@ -1,0 +1,15 @@
+arsneal:addToggle("Silet aim (closestplayer)",false,function(a) 
+		silentaim = not silentaim
+		local mt = getrawmetatable(game)
+		local old = mt.__namecall 
+		setreadonly(mt, false)
+		mt.__namecall = newcclosure(function(self, ...) [nonamecall]
+			local args = {...}
+			if not checkcaller() and silentaim == true and getnamecallmethod() == 'FireServer' and self.Name == 'HitPart' then
+				args[1] = closest().Character.Head
+				args[2] = closest().Character.Head.Position
+				args[7] = true 
+			end
+			return old(self, unpack(args))
+		end)
+	end)
