@@ -31,3 +31,21 @@ cords.Button({
 		end)
 	end
 })
+
+timetotween = 1 
+cords.Button({
+	Text = "Generate tween script",
+	Callback = function()
+		pcall(function()
+			local pos = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+			setclipboard('tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new('..timetotween..', Enum.EasingStyle.Linear)\ntween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new('..pos..')})\ntween:Play()')  
+		end)
+	end
+})
+
+cords.TextField({
+	Text = "time to tween (for above)",
+	Callback = function(value)
+		timetotween = value 
+	end
+})
