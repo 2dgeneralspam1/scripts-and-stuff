@@ -1,0 +1,33 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local UI = Material.Load({
+	Title = "Cords Finder",
+	Style = 3,
+	SizeX = 370,
+	SizeY = 200,
+	Theme = "Dark"
+})
+
+local cords = UI.New({
+	Title = "Cords finder"
+})
+
+cords.Button({
+	Text = "Get your cords",
+	Callback = function()
+		pcall(function()
+			setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position))  
+		end)
+	end
+})
+
+cords.Button({
+	Text = "Generate a teleport script",
+	Callback = function()
+		pcall(function()
+			local pos = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+			print(pos)
+			setclipboard("game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new("..pos..")")  
+		end)
+	end
+})
