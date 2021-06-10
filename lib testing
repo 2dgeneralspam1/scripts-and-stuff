@@ -318,8 +318,26 @@ function Library:Window(Name, Color, SizeY)
                 Button.TextColor3 = Color3.new(1, 1, 1)
                 Button.TextSize = 14
                 Button.TextStrokeTransparency = 0.4
+                
+                Button.MouseEnter:Connect(function()
+				TweenService:Create(
+					Title,
+					TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+					{TextTransparency = 0}
+				):Play()
+			end)
+
+			Button.MouseLeave:Connect(function()
+				TweenService:Create(
+					Title,
+					TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+					{TextTransparency = 0.3}
+				):Play()
+			end)
 
                 Button.MouseButton1Click:Connect(Func)
+                
+                
             end
 
             function Functions:Toggle(Name, Func)
