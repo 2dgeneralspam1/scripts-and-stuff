@@ -318,26 +318,8 @@ function Library:Window(Name, Color, SizeY)
                 Button.TextColor3 = Color3.new(1, 1, 1)
                 Button.TextSize = 14
                 Button.TextStrokeTransparency = 0.4
-                
-                Button.MouseEnter:Connect(function()
-				TweenService:Create(
-					Title,
-					TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-					{TextTransparency = 0}
-				):Play()
-			end)
-
-			Button.MouseLeave:Connect(function()
-				TweenService:Create(
-					Title,
-					TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-					{TextTransparency = 0.3}
-				):Play()
-			end)
 
                 Button.MouseButton1Click:Connect(Func)
-                
-                
             end
 
             function Functions:Toggle(Name, Func)
@@ -898,6 +880,8 @@ function Library:Window(Name, Color, SizeY)
                         Button.Text = KeyCodeName
                         getgenv()[Name .. "Bind"] = InputObject
                         getgenv()[Name .. "Pressed"] = false
+                    else
+                        continue
                     end
                 end)
 
@@ -905,6 +889,8 @@ function Library:Window(Name, Color, SizeY)
                     if InputObject == getgenv()[Name .. "Bind"] then
                         getgenv()[Name .. "Toggle"] = not getgenv()[Name .. "Toggle"]
                         Func(getgenv()[Name .. "Toggle"])
+                    else
+                        continue
                     end
                 end)
             end
