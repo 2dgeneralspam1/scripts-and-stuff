@@ -876,18 +876,9 @@ function Library:Window(Name, Color, SizeY)
                 }
 
                 Button.MouseButton1Click:Connect(function()
-                    if getgenv()[Name .. "Pressed"] then
-                        Button.Text = "None"
-                    else
-                        Button.Text = "..."
-                    end
-                    getgenv()[Name .. "Bind"] = nil
-                    getgenv()[Name .. "Pressed"] = not getgenv()[Name .. "Pressed"]
-                end)
-
-                UserInput.InputBegan:Connect(function(InputObject)
-                    if getgenv()[Name .. "Pressed"] and InputObject.UserInputType == Enum.UserInputType.Keyboard then
-                        KeyCodeName = InputObject.KeyCode.Name
+                    local inputwait = game:GetService("UserInputService").InputBegan:wait()
+					if getgenv()[Name .. "Pressed"] and inputwait.UserInputType == Enum.UserInputType.Keyboard then
+                        KeyCodeName = inputwait.KeyCode.Name
                         if string.find(KeyCodeName, "Right") then
                             KeyCodeName = string.gsub(KeyCodeName, "Right", "R")
                         elseif string.find(KeyCodeName, "Left") then
@@ -896,14 +887,26 @@ function Library:Window(Name, Color, SizeY)
                             KeyCodeName = KeyLib[KeyCodeName]
                         end
                         Button.Text = KeyCodeName
-                        getgenv()[Name .. "Bind"] = InputObject
+                        getgenv()[Name .. "Bind"] = inputwait
                         getgenv()[Name .. "Pressed"] = false
                     end
+                    
+                    if getgenv()[Name .. "Pressed"] then
+                        Button.Text = "None"
+                    else
+                        Button.Text = "..."
+                    end
+                    getgenv()[Name .. "Bind"] = nil
+                    getgenv()[Name .. "Pressed"] = not getgenv()[Name .. "Pressed"]
                 end)
+                
+                
+
 
                 UserInput.InputBegan:Connect(function(InputObject)
                     if InputObject == getgenv()[Name .. "Bind"] then
                         getgenv()[Name .. "Toggle"] = not getgenv()[Name .. "Toggle"]
+                        Func(getgenv()[Name .. "Toggle"])
                     end
                 end)
             end
