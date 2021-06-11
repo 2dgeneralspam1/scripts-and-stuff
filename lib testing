@@ -864,11 +864,11 @@ function Library:Window(Name, Color, SizeY)
                         Button.Text = "..."
                     end
                     getgenv()[Name .. "Bind"] = nil
-                    getgenv()[Name .. "Pressed"] = not getgenv()[Name .. "Pressed"]
+                    getgenv()[Name .. "Pressed"] = true 
                 end)
 
                 UserInput.InputBegan:Connect(function(InputObject)
-                    if getgenv()[Name .. "Pressed"] then
+                    if getgenv()[Name .. "Pressed"] == true then
                         KeyCodeName = InputObject.KeyCode.Name
                         if string.find(KeyCodeName, "Right") then
                             KeyCodeName = string.gsub(KeyCodeName, "Right", "R")
