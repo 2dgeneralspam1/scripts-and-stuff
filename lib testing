@@ -883,7 +883,9 @@ function Library:Window(Name, Color, SizeY)
                     end
                 end)
                 
-                game:GetService("UserInputService").InputBegan:connect(
+                spawn(function()
+                    while wait() do 
+                        game:GetService("UserInputService").InputBegan:connect(
     			function(SussyBaka)
     				 if SussyBaka == getgenv()[Name .. "Bind"] then
                         getgenv()[Name .. "Toggle"] = not getgenv()[Name .. "Toggle"]
@@ -891,6 +893,8 @@ function Library:Window(Name, Color, SizeY)
                     end
     			end
     			)
+                    end 
+                end) 
             end
 
             function Functions:Slider(Name, Max, Min, Func)
