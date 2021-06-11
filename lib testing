@@ -882,13 +882,15 @@ function Library:Window(Name, Color, SizeY)
                         getgenv()[Name .. "Pressed"] = false
                     end
                 end)
-
-                UserInput.InputBegan:Connect(function(InputObject)
-                    if InputObject == getgenv()[Name .. "Bind"] then
+                
+                game:GetService("UserInputService").InputBegan:connect(
+    			function(SussyBaka)
+    				 if SussyBaka == getgenv()[Name .. "Bind"] then
                         getgenv()[Name .. "Toggle"] = not getgenv()[Name .. "Toggle"]
                         Func(getgenv()[Name .. "Toggle"])
                     end
-                end)
+    			end
+    			)
             end
 
             function Functions:Slider(Name, Max, Min, Func)
