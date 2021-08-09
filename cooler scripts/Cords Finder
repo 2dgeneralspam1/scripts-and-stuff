@@ -1,51 +1,8 @@
-local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+setclipboard("loadstring(game:HttpGet('https://raw.githubusercontent.com/2dgeneralspam1/lua-releases/main/scripts/coords-finder.lua'))()")
 
-local UI = Material.Load({
-	Title = "Cords Finder",
-	Style = 3,
-	SizeX = 370,
-	SizeY = 200,
-	Theme = "Dark"
-})
-
-local cords = UI.New({
-	Title = "Cords finder"
-})
-
-cords.Button({
-	Text = "Get your cords",
-	Callback = function()
-		pcall(function()
-			setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position))  
-		end)
-	end
-})
-
-cords.Button({
-	Text = "Generate a teleport script",
-	Callback = function()
-		pcall(function()
-			local pos = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
-			print(pos)
-			setclipboard("game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new("..pos..")")  
-		end)
-	end
-})
-
-timetotween = 1 
-cords.Button({
-	Text = "Generate tween script",
-	Callback = function()
-		pcall(function()
-			local pos = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
-			setclipboard('tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new('..timetotween..', Enum.EasingStyle.Linear)\ntween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = CFrame.new('..pos..')})\ntween:Play()')  
-		end)
-	end
-})
-
-cords.TextField({
-	Text = "time to tween (for above)",
-	Callback = function(value)
-		timetotween = value 
-	end
+game.StarterGui:SetCore("SendNotification", {
+	Title = "Script"; 
+	Text = "You are using the old loadstring. The new one has been copied to your clipboard.";
+	Icon = ""; 
+	Duration = 5; 
 })
